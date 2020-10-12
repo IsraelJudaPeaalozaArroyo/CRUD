@@ -1,0 +1,90 @@
+package Main;
+import java.util.ArrayList;
+import java.util.Scanner;
+public class CRUD3 {
+
+    public static void main(String[] args) {
+        
+        Scanner entrada = new Scanner(System.in);
+        
+        ArrayList<Nombres> listaNombres = new ArrayList<>();
+        
+        
+        boolean salir = false;
+        while (!salir) {   
+            
+            System.out.println(" INGRESE LA OPCION QUE QUIERAS REALIZAR");
+            System.out.println(" 1 - Ingrese el nombre ");
+            System.out.println(" 2 - Listar los nombres ingresados");
+            System.out.println(" 3 - Eliminar un nombre ");
+            System.out.println(" 4 - Modificar nombre ");
+            System.out.println(" 0 - Salir del programa");
+            
+            
+            int opcion = Integer.parseInt(entrada.nextLine());
+           
+           
+            switch(opcion) {
+                case 1: 
+                    Nombres a = new Nombres();
+                    System.out.println("Ingrese el nombre");
+                    
+                    a.setNombre(entrada.nextLine());
+          
+                    listaNombres.add(a);
+ 
+                    break;
+                case 2: 
+                    System.out.println(" ");
+                   for(int i = 0; i < listaNombres.size(); i++){ 
+                      // System.out.println("Nombre: " + (i + 1));
+                       
+                       Nombres muestra =  listaNombres.get(i); 
+                       
+                       System.out.println( muestra.getNombre());
+                   }      
+                   System.out.println(" ");
+                    break;
+                case 3: 
+                    
+                    System.out.println("Ingrese el nombre a eliminar: ");
+                    String nombre = entrada.nextLine();                   
+                    for (int i = 0; i < listaNombres.size(); i++) {
+                        Nombres eliminar = listaNombres.get(i);      
+                        if (nombre.equals(eliminar.getNombre())) {
+                            
+                            listaNombres.remove(i);
+                            System.out.println("Nombre eliminado");
+                        }
+                    }            
+                    System.out.println(" ");
+                    break;
+                case 4:
+                    System.out.println(" Ingrese el nombre a modificar");
+                    nombre = entrada.nextLine();
+                   
+                    for (int i = 0; i < listaNombres.size(); i++) {
+                        Nombres modifica = listaNombres.get(i);
+                        if (nombre.equals(modifica.getNombre())) {
+                            System.out.println("Nombre: " + modifica.getNombre());
+                            //System.out.println("Color: " + auto.getColor());
+                            System.out.println("Ingrese el nuevo nombre: ");
+                            String cambio = entrada.nextLine();
+
+                            modifica.setNombre(cambio);                
+                        }
+                    }
+                    System.out.println(" ");
+                    break;
+                case 0:
+                    salir = true;
+                    System.out.println("Saliendo del programa");
+                    break;
+                default: 
+                    System.out.println(" ");
+                    System.out.println("Opcion invalida!!!!!!!");
+                
+            }
+        }       
+    }   
+}
